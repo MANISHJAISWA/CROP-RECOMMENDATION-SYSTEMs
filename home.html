@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Crop Recommendation System
+    </title>
+
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================
+     MAIN CONTAINER
+======================================= -->
+
+<div class="container">
+
+
+    <!-- ==================================
+         HEADER
+    =================================== -->
+
+    <div class="header">
+
+        <div class="logo">
+            🌱
+        </div>
+
+        <h1>
+            Crop Recommendation System
+        </h1>
+
+        <p>
+            Smart crop recommendation using
+            Machine Learning
+        </p>
+
+    </div>
+
+
+    <!-- ==================================
+         FORM
+    =================================== -->
+
+    <form
+        action="/predict"
+        method="POST"
+        class="crop-form"
+    >
+
+
+        <h2>
+            Enter Soil & Weather Information
+        </h2>
+
+
+        <div class="form-grid">
+
+
+            <!-- Nitrogen -->
+
+            <div class="input-box">
+
+                <label for="N">
+                    Nitrogen (N)
+                </label>
+
+                <input
+                    type="number"
+                    id="N"
+                    name="N"
+                    step="any"
+                    placeholder="Example: 90"
+                    required
+                >
+
+                <small>
+                    Soil nitrogen value
+                </small>
+
+            </div>
+
+
+            <!-- Phosphorus -->
+
+            <div class="input-box">
+
+                <label for="P">
+                    Phosphorus (P)
+                </label>
+
+                <input
+                    type="number"
+                    id="P"
+                    name="P"
+                    step="any"
+                    placeholder="Example: 42"
+                    required
+                >
+
+                <small>
+                    Soil phosphorus value
+                </small>
+
+            </div>
+
+
+            <!-- Potassium -->
+
+            <div class="input-box">
+
+                <label for="K">
+                    Potassium (K)
+                </label>
+
+                <input
+                    type="number"
+                    id="K"
+                    name="K"
+                    step="any"
+                    placeholder="Example: 43"
+                    required
+                >
+
+                <small>
+                    Soil potassium value
+                </small>
+
+            </div>
+
+
+            <!-- Temperature -->
+
+            <div class="input-box">
+
+                <label for="temperature">
+                    Temperature (°C)
+                </label>
+
+                <input
+                    type="number"
+                    id="temperature"
+                    name="temperature"
+                    step="any"
+                    placeholder="Example: 25"
+                    required
+                >
+
+                <small>
+                    Temperature in Celsius
+                </small>
+
+            </div>
+
+
+            <!-- Humidity -->
+
+            <div class="input-box">
+
+                <label for="humidity">
+                    Humidity (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="humidity"
+                    name="humidity"
+                    step="any"
+                    placeholder="Example: 80"
+                    required
+                >
+
+                <small>
+                    Relative humidity
+                </small>
+
+            </div>
+
+
+            <!-- pH -->
+
+            <div class="input-box">
+
+                <label for="ph">
+                    Soil pH
+                </label>
+
+                <input
+                    type="number"
+                    id="ph"
+                    name="ph"
+                    step="any"
+                    placeholder="Example: 6.5"
+                    required
+                >
+
+                <small>
+                    Soil pH value (0 - 14)
+                </small>
+
+            </div>
+
+
+            <!-- Rainfall -->
+
+            <div class="input-box">
+
+                <label for="rainfall">
+                    Rainfall (mm)
+                </label>
+
+                <input
+                    type="number"
+                    id="rainfall"
+                    name="rainfall"
+                    step="any"
+                    placeholder="Example: 200"
+                    required
+                >
+
+                <small>
+                    Rainfall in millimeters
+                </small>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==================================
+             BUTTON
+        =================================== -->
+
+        <button
+            type="submit"
+            class="predict-btn"
+        >
+
+            🌾 Recommend Crop
+
+        </button>
+
+
+    </form>
+
+
+    <!-- ==================================
+         ERROR MESSAGE
+    =================================== -->
+
+    {% if error %}
+
+    <div class="error-box">
+
+        ⚠️
+
+        <strong>
+            {{ error }}
+        </strong>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ==================================
+         PREDICTION RESULT
+    =================================== -->
+
+    {% if prediction %}
+
+    <div class="result-box">
+
+
+        <div class="result-icon">
+            🌱
+        </div>
+
+
+        <h2>
+            Recommended Crop
+        </h2>
+
+
+        <div class="crop-name">
+
+            {{ prediction }}
+
+        </div>
+
+
+        <p>
+            Based on the soil and environmental
+            conditions provided, the machine
+            learning model recommends this crop.
+        </p>
+
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ==================================
+         FOOTER
+    =================================== -->
+
+    <div class="footer">
+
+        <p>
+            Crop Recommendation System
+            | Random Forest Machine Learning
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
